@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+        <link href="reset.css" rel="stylesheet">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    </head>
+    <body class="ovr">
+        <header><div id="header__wrapper">
+            <a class="logo" href="#">
+                <h2>💙 Welcome</h2>
+            </a>
+            <nav>
+                <a href="#">Store</a>
+                <a href="#">Tour</a>
+            </nav>
+            <div class="header__right">
+                <div class="cart">
+                    <a>💰</a>
+                </div>
+                
+                <div class="socials">
+                    <a>🎵</a>
+                    <a>🐦</a>
+                    <a>📸</a>
+                </div>
+            </div>
+        </div></header>
+        
+        <main>
+            <div id="browser"></div>
+        </main>
+        
+        <footer><div id="footer__wrapper">
+            copyright Nix-C 2022
+        </div></footer>
+    </body>
+    <style>
+        .ovr *{
+            vertical-align: -webkit-baseline-middle; /*centers more properly! */
+        }
+
+        body{
+            font-size: 16px;
+
+            display: flex;
+            flex-direction: column;
+
+            overflow:hidden;
+
+            font-family: 'IBM Plex Mono', monospace;
+
+            background-color: darkslategray;
+            background-image: url("bg.jpg");
+            background-size: cover;
+            background-position: center;
+            max-width: 100%;
+            width: 100vw;
+
+            max-height: 100vh;
+            height: 100vh;
+
+            color: white;
+
+            line-height: 1.1;
+
+            
+        }
+
+        a{
+            color: currentColor;
+            text-decoration: none;
+        }
+
+        a:hover{
+            opacity: .8;
+        }
+
+        h1{
+            font-weight: 600;
+            font-size: 36px;
+        }
+
+        h2{
+            font-weight: 500;
+            font-size: 24px;
+        }
+
+        h3 {
+            font-weight: 500;
+            font-size: 20px;
+        }
+
+        header{
+            background: rgba(156, 208, 174, 1);
+            width: 100%;
+            max-width: 100%;
+            position: static;
+            left: 0;
+            color: rgba(0, 65, 22, 1);
+        }        
+        #header__wrapper {
+            
+            padding: 0 30px;
+            display: flex;
+            align-items: center;
+
+        }
+        header div a{
+            padding: 10px 0;
+        }
+        .header__right {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+        }
+
+        .logo {
+            padding-right: 32px;
+        }
+
+        .cart{
+            padding-right: 1em;
+        }
+
+        .socials {
+            padding-left: 1em;
+            border-left: dotted currentColor;
+        }
+
+        main {
+            flex-grow: 1;
+        }
+
+        #browser {
+            background: whitesmoke;
+            height: 800px;
+            width: 600px;
+            border-radius: 10px;
+        }
+
+
+        footer{
+            position: absolute;
+            bottom: 0;
+        }
+
+        #footer__wrapper {
+            padding: 10px 16px;
+        }
+    </style>
+    <script>
+        const position = { x: 0, y: 0 }
+
+        interact('#browser').draggable({
+        modifiers: [
+            interact.modifiers.restrictRect({
+            restriction: 'parent'
+            })
+        ],            
+        listeners: {
+            start (event) {
+            console.log(event.type, event.target)
+            },
+            move (event) {
+            position.x += event.dx
+            position.y += event.dy
+
+            event.target.style.transform =
+                `translate(${position.x}px, ${position.y}px)`
+            },
+        }
+        })
+    </script>
+</html>
